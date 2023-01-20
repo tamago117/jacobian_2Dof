@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-def visualize_2Dof(joint_angle, l1, l2, trajectory=None):
+def visualize_2Dof(joint_angle, l1, l2, target_pos, trajectory=None):
 
     #calculate the end effector position
     joint_pos = calc_forward_kinematics_2Dof(joint_angle, l1, l2)
@@ -12,6 +12,8 @@ def visualize_2Dof(joint_angle, l1, l2, trajectory=None):
     plt.plot([0, joint_pos[0, 0]], [0, joint_pos[0, 1]], 'k', linewidth=2)
     plt.scatter(joint_pos[0, 0], joint_pos[0, 1], s=100, c='k')
     plt.plot([joint_pos[0, 0], joint_pos[1, 0]], [joint_pos[0, 1], joint_pos[1, 1]], 'k', linewidth=2)
+
+    plt.plot(target_pos[0], target_pos[1], 'gx')
 
     if trajectory is not None:
         plt.plot(np.array(trajectory)[:, 0], np.array(trajectory)[:, 1], 'r', linewidth=2)
